@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  web:
+    image:
+    ports:
+      -
+    volume:
+  web:
+    image:
+    ports:
+      -
+    volume:
+  web:
+    image:
+    ports:
+      -
+    volume:
+
+volume:
