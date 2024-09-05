@@ -1,28 +1,37 @@
 version: "3"
 
 services:
-  web:
-    container_name:
-    build:
-      context: .
-      dockerfile: ./requirements/nginx/Dockerfile
-    restart: unless-stopped
-    env_file: .env
+  # web:
+  #   container_name:
+  #   build:
+  #     context: .
+  #     dockerfile: ./requirements/nginx/Dockerfile
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   environment: 
+  #     HOSTNAME: ${HOSTNAME}
+  #   ports:
+  #     - "80"
+  #     - "443"
+  #   volume:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
     environment:
-      HOSTNAME: ${HOSTNAME}
+      - DATABASE_NAME = $MARIADB_DATABASE_NAME
+      - DATABASE_USER = $MARIADB_USER
+      - DATABASE_PW = $MARIADB_USER_PASSWORD
     ports:
-      - "80"
-      - "443"
-    volume:
-  web:
-    image:
-    ports:
-      -
-    volume:
-  web:
-    image:
-    ports:
-      -
-    volume:
+      - 3306:3306
+    expose:
+      - 3306
+    # volume:
 
-volume:
+
+  # web:
+  #   image:
+  #   ports:
+#       -
+#     volume:
+
+# volume:

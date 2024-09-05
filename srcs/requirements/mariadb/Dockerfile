@@ -1,8 +1,9 @@
 FROM debian:bullseye
-RUN apt update && apt upgrade -y && apt install -y mariadb_server mariadb_client
+RUN apt-get update -y && apt-get upgrade -y && apt-get install mariadb-server mariadb-client -y
 
-COPY ./init-db.sql /docker-entrypoint-initdb.d/
+COPY ./init-db.sh /init-db.sh
 
 EXPOSE 3306
 
-CMD ["mysqld_safe", "--init-file=/docker-entrypoint-initdb.d/init-db.sql"]
+RUN chmod +x /init-db.sh
+CMD bash -c /init-db.sh
