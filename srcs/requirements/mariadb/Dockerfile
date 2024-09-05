@@ -1,5 +1,5 @@
 FROM debian:bullseye
-RUN apt update && apt-get update && apt install -y mariadb_server mariadb_client
+RUN apt update && apt upgrade -y && apt install -y mariadb_server mariadb_client
 
 COPY ./init-db.sql /docker-entrypoint-initdb.d/
 
