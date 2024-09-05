@@ -5,4 +5,4 @@ COPY ./init-db.sql /docker-entrypoint-initdb.d/
 
 EXPOSE 3306
 
-CMD ["mysqld_safe", "--init", "/docker-entrypoint-initdb.d/init-db.sql"]
+CMD ["mysqld_safe", "--init-file=/docker-entrypoint-initdb.d/init-db.sql"]
