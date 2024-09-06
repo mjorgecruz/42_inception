@@ -1,12 +1,14 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade && apt-get install -y nginx && apt-get install -y nginx-core apt-get install openssl
-RUN --mount=type=secret,id=mysecret, target=/var/secrets
-COPY nginx.conf /etc/nginx
+RUN apt-get update && \
+    apt-get upgrade -y &&\
+    apt-get install -y nginx nginx-core openssl
+# RUN --mount=type=secret,id=mysecret, target=/var/secrets
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY tools tools
 
-RUN nginx
+# RUN nginx
 
-EXPOSE 80
+EXPOSE 80 443
 
-RUN openssl genrsa -des3 -out myhostname.key 2048 --passwd 
-RUN 
+CMD ["nginx", "-g", "daemon off;"]
