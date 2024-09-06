@@ -1,1 +1,6 @@
 docker build --secret id=mysecret,src=../../../secrets/credentials.txt
+
+
+https://chatgpt.com/c/66daea8a-da40-8005-be70-4cec03d0c40e
+sudo nano /etc/hosts
+<your_server_ip> masoares.42.fr www.masoares.42.fr
