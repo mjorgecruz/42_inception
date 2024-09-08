@@ -46,6 +46,10 @@ services:
       - WORDPRESS_NAME=$MARIADB_DATABASE_NAME
       - WORDPRESS_USER=$MARIADB_USER
       - WORDPRESS_PW=$MARIADB_USER_PASSWORD
+    ports:
+      - 9000:9000
+    expose:
+      - 9000
     volumes:
       - wordpress_data:/var/www/html
     networks:
