@@ -4,6 +4,7 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
+    restart: unless-stopped
     environment: 
       - HOSTNAME=$HOSTNAME
     ports:
@@ -12,11 +13,15 @@ services:
     expose:
       - 80
       - 443
-  #   volume:
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
 
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
+    restart: unless-stopped
     environment:
       - DATABASE_NAME=$MARIADB_DATABASE_NAME
       - DATABASE_USER=$MARIADB_USER
@@ -25,13 +30,32 @@ services:
       - 3306:3306
     expose:
       - 3306
-    # volume:
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
 
+  wordpress:
+    depends_on:
+      - mariadb
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=mariadb:3306
+      - WORDPRESS_NAME=$MARIADB_DATABASE_NAME
+      - WORDPRESS_USER=$MARIADB_USER
+      - WORDPRESS_PW=$MARIADB_USER_PASSWORD
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
 
-  # web:
-  #   image:
-  #   ports:
-#       -
-#     volume:
+volumes:
+  mariadb_data:
+  wordpress_data: 
 
-# volume:
+networks:
+  inception:
+    driver: bridge
+
