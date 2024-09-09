@@ -60,13 +60,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/masoares/data/mariadb
+      device: /home/$USER/data/mariadb
       o: bind
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/masoares/data/wordpress
+      device: /home/$USER/data/wordpress
       o: bind
 
 networks:

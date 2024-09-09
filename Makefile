@@ -3,13 +3,13 @@ all: volumes
 
 volumes:
 	if [ ! -d "/home/$(USER)/data" ]; then \
-		mkdir /home/$(USER)/data ; \
+		mkdir -p /home/$(USER)/data ; \
 	fi
 	if [ ! -d "/home/$(USER)/data/wordpress" ]; then \
-		mkdir /home/$(USER)/data/wordpress ; \
+		mkdir -p /home/$(USER)/data/wordpress ; \
 	fi
 	if  [ ! -d "/home/$(USER)/data/mariadb" ]; then \
-		mkdir /home/$(USER)/data/mariadb ; \
+		mkdir -p /home/$(USER)/data/mariadb ; \
 	fi
 
 clean:
