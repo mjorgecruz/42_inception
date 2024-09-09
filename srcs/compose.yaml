@@ -4,7 +4,7 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
-    restart: unless-stopped
+    restart: on-failure
     environment: 
       - HOSTNAME=$HOSTNAME
     ports:
@@ -21,7 +21,7 @@ services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
-    restart: unless-stopped
+    restart: on-failure
     environment:
       - DATABASE_NAME=$MARIADB_DATABASE_NAME
       - DATABASE_USER=$MARIADB_USER
@@ -40,7 +40,7 @@ services:
       - mariadb
     container_name: wordpress
     build: ./requirements/wordpress
-    restart: unless-stopped
+    restart: on-failure
     environment:
       - WORDPRESS_DB_HOST=mariadb:3306
       - WORDPRESS_NAME=$MARIADB_DATABASE_NAME
@@ -57,7 +57,17 @@ services:
 
 volumes:
   mariadb_data:
-  wordpress_data: 
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/masoares/data/mariadb
+      o: bind
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/masoares/data/wordpress
+      o: bind
 
 networks:
   inception:

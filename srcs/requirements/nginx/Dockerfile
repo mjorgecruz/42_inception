@@ -4,9 +4,17 @@ RUN apt-get update && \
     apt-get upgrade -y &&\
     apt-get install -y nginx nginx-core openssl
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY tools/masoares.42.fr+1.pem /etc/nginx/ssl/masoares.42.fr+1.pem
-COPY tools/masoares.42.fr+1-key.pem /etc/nginx/ssl/masoares.42.fr+1-key.pem
-COPY tools /usr/share/nginx/html
+# COPY tools/masoares.42.fr+1.pem /etc/nginx/ssl/masoares.42.fr+1.pem
+# COPY tools/masoares.42.fr+1-key.pem /etc/nginx/ssl/masoares.42.fr+1-key.pem
+RUN mkdir -p /etc/nginx/ssl && \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/nginx/ssl/nginx.key \
+    -out /etc/nginx/ssl/nginx.crt \
+    -subj "/CN=localhost"
+
+
+COPY nginx.conf /etc/nginx/sites-available/default
+# COPY tools /usr/share/nginx/html
 
 # RUN nginx
 
