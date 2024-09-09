@@ -36,8 +36,6 @@ services:
       - inception
 
   wordpress:
-    depends_on:
-      - mariadb
     container_name: wordpress
     build: ./requirements/wordpress
     restart: on-failure
