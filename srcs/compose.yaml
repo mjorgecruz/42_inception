@@ -64,6 +64,17 @@ services:
     networks:
       - inception
 
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    restart: on-failure
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+
 volumes:
   mariadb_data:
     driver: local
