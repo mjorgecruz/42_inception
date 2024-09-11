@@ -11,11 +11,7 @@ RUN mkdir -p /etc/nginx/ssl && \
     -out /etc/nginx/ssl/nginx.crt \
     -subj "/CN=localhost"
 
-
 COPY nginx.conf /etc/nginx/sites-available/default
-# COPY tools /usr/share/nginx/html
-
-# RUN nginx
 
 EXPOSE 80 443
 
