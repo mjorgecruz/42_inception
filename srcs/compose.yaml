@@ -5,6 +5,8 @@ services:
     container_name: nginx
     build: ./requirements/nginx
     restart: on-failure
+    env_file:
+      - .env
     environment: 
       - HOSTNAME=$HOSTNAME
     ports:
@@ -22,6 +24,8 @@ services:
     container_name: mariadb
     build: ./requirements/mariadb
     restart: on-failure
+    env_file:
+      - .env
     environment:
       - DATABASE_NAME=$MARIADB_DATABASE_NAME
       - DATABASE_USER=$MARIADB_USER
@@ -39,11 +43,18 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     restart: on-failure
+    env_file:
+      - .env
     environment:
       - WORDPRESS_DB_HOST=mariadb:3306
       - WORDPRESS_NAME=$MARIADB_DATABASE_NAME
       - WORDPRESS_USER=$MARIADB_USER
       - WORDPRESS_PW=$MARIADB_USER_PASSWORD
+      - WORDPRESS_ADMIN=$WORDPRESS_ADMIN
+      - WORDPRESS_ADMIN_PW=$WORDPRESS_ADMIN_PASSWORD
+      - WORDPRESS_ADMIN_EMAIL=$WORDPRESS_ADMIN_EMAIL
+      - WORDPRESS_GUEST=$WORDPRESS_GUEST
+      - WORDPRESS_GUEST_PW=$WORDPRESS_GUEST_PASSWORD
     ports:
       - 9000:9000
     expose:
