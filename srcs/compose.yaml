@@ -94,35 +94,35 @@ services:
     networks:
       - inception
 
-  redis:
-    container_name: redis 
-    build: ./requirements/bonus/redis
-    restart: on-failure
-    env_file:
-      - .env
-    ports:
-      - 6379:6379
-    expose:
-      - 6379
-    volumes:
-      - wordpress_data:/var/www/html
-    networks:
-      - inception
-
-  # static:  
-  #   container_name: static 
-  #   build: ./requirements/bonus/static
+  # redis:
+  #   container_name: redis 
+  #   build: ./requirements/bonus/redis
   #   restart: on-failure
   #   env_file:
   #     - .env
   #   ports:
-  #     - 10000:10000
+  #     - 6379:6379
   #   expose:
-  #     - 10000
+  #     - 6379
   #   volumes:
   #     - wordpress_data:/var/www/html
   #   networks:
   #     - inception
+
+  static:  
+    container_name: static 
+    build: ./requirements/bonus/static
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - 10000:10000
+    expose:
+      - 10000
+    volumes:
+      - static_data:/var/www/html
+    networks:
+      - inception
 
 volumes:
   mariadb_data:
@@ -136,6 +136,12 @@ volumes:
     driver_opts:
       type: none
       device: /home/$USER/data/wordpress
+      o: bind
+  static_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/$USER/data/static
       o: bind
 
 networks:
