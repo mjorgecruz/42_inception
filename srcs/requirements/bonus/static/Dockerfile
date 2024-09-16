@@ -8,6 +8,8 @@ RUN mkdir -p var/www/html/static && chmod a-w /var/www/html/static
 COPY ./tools /var/www/html/static
 RUN chmod -R 755 /var/www/html/static
 
+
+
 RUN echo 'server { \
     listen 10000; \
     server_name localhost; \
