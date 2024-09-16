@@ -94,22 +94,20 @@ services:
     networks:
       - inception
 
-  # redis:
-  #   container_name: redis 
-  #   build: ./requirements/bonus/redis
-  #   restart: on-failure
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - 20:20
-  #     - 21:21
-  #   expose:
-  #     - 20
-  #     - 21
-  #   volumes:
-  #     - wordpress_data:/var/www/html
-  #   networks:
-  #     - inception
+  redis:
+    container_name: redis 
+    build: ./requirements/bonus/redis
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - 6379:6379
+    expose:
+      - 6379
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
 
   # static:  
   #   container_name: static 

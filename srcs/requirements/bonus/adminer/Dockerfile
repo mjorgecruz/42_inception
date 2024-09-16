@@ -11,7 +11,7 @@ RUN mkdir -p /var/www/html/adminer && chown -R www-data:www-data /var/www/html/a
 RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 WORKDIR /var/www/html/adminer
 
-RUN wget -O index.php https://github.com/vrana/adminer/releases/download/v4.7.8/adminer-4.7.8.php 
+RUN cd /var/www/html/adminer && wget -O index.php https://github.com/vrana/adminer/releases/download/v4.7.8/adminer-4.7.8.php 
 RUN chmod 777 index.php
 EXPOSE 9000
 
