@@ -13,10 +13,8 @@ RUN chmod -R 755 /var/www/html/static
 RUN echo 'server { \
     listen 10000; \
     server_name localhost; \
-    location / { \
-        root /var/www/html/static; \
-        index index.html; \
-    } \
+    root /var/www/html/static; \
+    index index.html; \
 }' > /etc/nginx/sites-available/default
 
 EXPOSE 10000
