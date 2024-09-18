@@ -77,7 +77,11 @@ services:
 
   ftp:
     container_name: ftp 
-    build: ./requirements/bonus/ftp
+    build: 
+      context: ./requirements/bonus/ftp
+      args:
+        - FTP_USER=${FTP_USER}
+        - FTP_PW=${FTP_USER_PASSWORD}
     restart: on-failure
     env_file:
       - .env
