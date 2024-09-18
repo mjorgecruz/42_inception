@@ -14,6 +14,9 @@ volumes:
 	if  [ ! -d "/home/$(USER)/data/static" ]; then \
 		mkdir -p /home/$(USER)/data/static ; \
 	fi
+		if  [ ! -d "/home/$(USER)/data/hexo" ]; then \
+		mkdir -p /home/$(USER)/data/hexo ; \
+	fi
 
 clean: down stop_container images_clean volume_clean network_clean
 	cd ./srcs && docker compose down

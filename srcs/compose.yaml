@@ -10,7 +10,6 @@ services:
     environment: 
       - HOSTNAME=$HOSTNAME
     ports:
-      - 80:80
       - 443:443
     expose:
       - 80
@@ -94,18 +93,18 @@ services:
     networks:
       - inception
 
-  # redis:
-  #   container_name: redis 
-  #   build: ./requirements/bonus/redis
-  #   restart: on-failure
-  #   env_file:
-  #     - .env
-  #   expose:
-  #     - 6379
-  #   volumes:
-  #     - wordpress_data:/var/www/html
-  #   networks:
-  #     - inception
+  redis:
+    container_name: redis 
+    build: ./requirements/bonus/redis
+    restart: on-failure
+    env_file:
+      - .env
+    expose:
+      - 6379
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
 
   static: 
     container_name: static 
@@ -128,6 +127,8 @@ services:
       - .env
     expose:
       - 4000
+    volumes:
+      - hexo_data:/app
     networks:
       - inception
 
@@ -150,6 +151,12 @@ volumes:
     driver_opts:
       type: none
       device: /home/$USER/data/static
+      o: bind
+  hexo_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/$USER/data/hexo
       o: bind
 
 networks:
