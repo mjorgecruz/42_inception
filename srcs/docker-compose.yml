@@ -2,6 +2,7 @@ version: "3"
 
 services:
   nginx:
+    image: nginx
     container_name: nginx
     build: ./requirements/nginx
     restart: on-failure
@@ -19,6 +20,7 @@ services:
       - inception
 
   mariadb:
+    image: mariadb
     container_name: mariadb
     build: ./requirements/mariadb
     restart: on-failure
@@ -38,7 +40,11 @@ services:
       - inception
 
   wordpress:
+    image: wordpress
     container_name: wordpress
+    depends_on:
+      mariadb:
+        condition: service_started
     build: ./requirements/wordpress
     restart: on-failure
     env_file:
@@ -63,6 +69,7 @@ services:
       - inception
 
   adminer:
+    image: adminer
     container_name: adminer
     build: ./requirements/bonus/adminer
     restart: on-failure
@@ -76,6 +83,7 @@ services:
       - inception
 
   ftp:
+    image: ftp
     container_name: ftp 
     build: 
       context: ./requirements/bonus/ftp
@@ -97,6 +105,7 @@ services:
       - inception
 
   redis:
+    image: redis
     container_name: redis 
     build: ./requirements/bonus/redis
     restart: on-failure
@@ -110,19 +119,21 @@ services:
       - inception
 
   static: 
+    image: static
     container_name: static 
     build: ./requirements/bonus/static
     restart: on-failure
     env_file:
       - .env
     expose:
-      - 10000
+      - 2053
     volumes:
       - static_data:/var/www/html
     networks:
       - inception
 
   hexo:
+    image: hexo
     container_name: hexo
     build: ./requirements/bonus/hexo
     restart: on-failure

@@ -25,6 +25,6 @@ RUN echo 'server { \
     index index.html; \
 }' > /etc/nginx/sites-available/default
 
-EXPOSE 10000
+EXPOSE 2053
 
 CMD ["nginx", "-g", "daemon off;"]
