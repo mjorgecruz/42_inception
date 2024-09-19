@@ -19,14 +19,12 @@ volumes:
 	fi
 
 clean: down stop_container images_clean volume_clean network_clean
-	cd ./srcs && docker compose down
 	docker system prune -a
-	docker volume prune -a 
-	docker volume rm srcs_wordpress_data srcs_mariadb_data
-	rm -rf /home/$(USER)/data;
+
 
 fclean: down stop_container images_clean volume_clean network_clean
 
+re: fclean all
 down:
 	@cd ./srcs && docker compose down
 
