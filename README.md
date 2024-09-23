@@ -5,29 +5,27 @@ The goal of this project is to broaden the knowledge of system administration by
 
 ## Mandatory Part
 
-    Docker Setup:
-        Use Docker Compose to manage your containers.
-        Each Docker image must correspond to a service and run in its dedicated container.
-        Use either Alpine or Debian for the base images.
-        Write your own Dockerfiles for each service. You are not allowed to use ready-made Docker images, except for Alpine/Debian.
+### Docker Setup:
+- There is a Docker Compose to manage all containers.
+- Each Docker image correspond to a service and is run in its dedicated container.
+- Alpine or Debian were used for the base images. Using ready-made Docker images was prohibited, except for Alpine/Debian.
+- There is a Dockerfile for each service.
 
-    Services:
-        NGINX Container: Must use TLSv1.2 or TLSv1.3 only.
-        WordPress + php-fpm Container: Must be installed and configured, without NGINX.
-        MariaDB Container: Must be installed and configured, without NGINX.
-        Create a volume for your WordPress database.
-        Create a second volume for your WordPress website files.
-        Establish a Docker network connecting all containers.
+### Services:
+- NGINX Container: TLSv1.2 or TLSv1.3 only.
+- WordPress + php-fpm Container: Must be installed and configured, without NGINX.
+- MariaDB Container: Must be installed and configured, without NGINX.
 
-    Additional Configuration:
-        Containers must restart automatically in case of a crash.
-        Do not use hacky patches like tail -f or sleep infinity.
-        Use environment variables for configuration and store sensitive data securely.
+### Additional Configuration:
+- A volume was created for the WordPress database.
+- A second volume was created for the WordPress website files.
+- A Docker network was created to connect all containers.
+- Containers must restart automatically in case of a crash.
+- A .env file was used to store sensitive data.
+  
+      In a real setting this document should not be shared on a public repository, but it was added here for demonstration
+      purposes.
 
-    Domain Configuration:
-        Configure your domain name (login.42.fr) to point to your local IP address.
-
-    Note: The latest tag is prohibited, and no passwords should be present in your Dockerfiles.
 
 ## Bonus Part
 The bonus part entailed the introduction of additional services, each running on its own container. </br>
