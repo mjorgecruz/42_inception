@@ -1,6 +1,6 @@
 # inception
 
-The goal of this project is to broaden the knowledge of system administration by using Docker. Several Docker images were created on a personal virtual machine to better understand learn how to manage multiple services in an isolated environment using Docker.
+The goal of this project is to broaden the knowledge of system administration by using Docker. Several Docker images were created on a personal virtual machine to better understand how to manage multiple services in an isolated environment using Docker.
 
 
 ## Mandatory Part
