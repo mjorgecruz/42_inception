@@ -23,8 +23,8 @@ The goal of this project is to broaden the knowledge of system administration by
 - Containers must restart automatically in case of a crash.
 - A .env file was used to store sensitive data.
 ```  
-In a real setting this document should not be shared on a public repository, therefore, you can create a .env file on 
-./srcs/ with the following information:
+In a real setting this document should not be shared on a public repository, therefore, you can create a .env file
+on ./srcs/ with the following information:
 ```
 ```
 MARIADB_DATABASE_NAME={mariadb_name}
