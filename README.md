@@ -22,10 +22,24 @@ The goal of this project is to broaden the knowledge of system administration by
 - A Docker network was created to connect all containers.
 - Containers must restart automatically in case of a crash.
 - A .env file was used to store sensitive data.
-  
-      In a real setting this document should not be shared on a public repository, but it was added here for demonstration
-      purposes.
-
+```  
+In a real setting this document should not be shared on a public repository, therefore, you can create a .env file on 
+./srcs/ with the following information:
+```
+```
+MARIADB_DATABASE_NAME={mariadb_name}
+MARIADB_USER={wp_user}
+MARIADB_USER_PASSWORD={password}
+HOSTNAME={login.42.fr}
+WORDPRESS_ADMIN={login}
+WORDPRESS_ADMIN_PASSWORD={password}
+WORDPRESS_ADMIN_EMAIL={email}
+WORDPRESS_GUEST={guest}
+WORDPRESS_GUEST_PASSWORD={password}
+WORDPRESS_GUEST_EMAIL={guest@mail.com}
+FTP_USER={user}
+FTP_USER_PASSWORD={password}
+```
 
 ## Bonus Part
 The bonus part entailed the introduction of additional services, each running on its own container. </br>
